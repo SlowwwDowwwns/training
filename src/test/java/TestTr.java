@@ -6,7 +6,7 @@ public class TestTr {
         @Test
         void testTr() {
 
-            Assertions.assertTrue(5 >= 1);
+            Assertions.assertFalse(5 < 1);
         }
     }
 
