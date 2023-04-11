@@ -1,5 +1,6 @@
 package com.demoqa;
 
+import com.codeborne.selenide.Config;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,28 +14,28 @@ public class TextBoxTests {
     @BeforeAll
     static void configure() {
         Configuration.baseUrl = "https://demoqa.com";
-//        Configuration.timeout = 10000; // 10 seconds
-//        Configuration.browser = "opera";
+        Configuration.holdBrowserOpen = true;
+        Configuration.timeout = 10000;
         Configuration.browserSize = "1920x1080";
     }
+
 
     @Test
     void fillFormTest() {
         open("/text-box");
-//        $("[id=userName]").setValue("Egor");
-        $("#userName").setValue("Egor");
-        $("#userEmail").setValue("Egor@egor.com");
-        $("#currentAddress").setValue("Some address 1");
-        $("#permanentAddress").setValue("Another address 1");
+        $("#userName").setValue("Mike"); // "id=userName" не работает \ а "#userName" проходит???
+        $("#userEmail").setValue("mike@mike.com");
+        $("#currentAddress").setValue("Rabochaya 1a");
+        $("#permanentAddress").setValue("Rabochyi prospect");
         $("#submit").click();
 
-        $("#output #name").shouldHave(text("Egor"));
-//        $("#output").$("#name").shouldHave(text("Egor"));
-//        $("#output").shouldHave(text("Egor"));
-//        $("#name").shouldHave(text("Egor"));
-        $("#output #email").shouldHave(text("Egor@egor.com"));
-        $("#output #currentAddress").shouldHave(text("Some address 1"));
-        $("#output #permanentAddress").shouldHave(text("Another address 1"));
+     //   $("id=submit").click();
+        $("#output #name").shouldHave(text("Mike"));
+//        $("#output").$("#name").shouldHave(text("Mike"));
+//        $("#output").shouldHave(text("Mike"));
+//        $("#name").shouldHave(text("Mike"));
+        $("#output #email").shouldHave(text("mike@mike.com"));
+        $("#output #currentAddress").shouldHave(text("Rabochaya 1a"));
+        $("#output #permanentAddress").shouldHave(text("Rabochyi prospect"));
     }
-
 }
